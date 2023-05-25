@@ -1,0 +1,100 @@
+	private static List<Cloudlet> cloudletList;
+	//This code creates the cloudlet lists
+	public static List<Vm> vmlist;
+    //This will create the lists of VM's
+		LinkedList<Vm> list = new LinkedList<Vm>();
+		//This will create the container to store all the VM's.
+		
+		//These are the parameters of VM's
+		long size = 10000; //image size (MB)
+		int ram = 512; //vm memory (MB)
+		int mips = 1000;
+		long bw = 1000;//vm bandwidth
+		int pesNumber = 1; //number of processing elements
+		String vmm = "Xen";//VMM name
+		
+			Vm[] vm = new Vm[vms];
+			//This code creates the VM.
+			
+		vm[0] = new Vm(0,userId,1000,pesNumber,ram,bw,size,vmm,new CloudletSchedulerSpaceShared());
+		vm[1] = new Vm(1,userId,8000,pesNumber,ram,bw,size,vmm,new CloudletSchedulerSpaceShared());
+		//This will create the VM instances.i.e VM 0 and VM1 with the help of new keyword.
+		This is taking 8 parameters 
+		1) id: unique id for each VM ie 0 and 1
+		2) userid: specifies the owner of the vM.
+		3) MIPS:(Million instrucations per second) represents the processing power of the VM.
+		   1000 for 1st VM and 8000 for 2nd Vm
+		4)pesNumber : it is the number of processing elements, here value is 1.
+		5)ram6)bw,size,vmm
+		9)CloudletSchedular:-object that represnts the cloudlet scheduling policy.
+		   here we have used the cloudletSchedularSharedSpace :- same processing elements is used by
+		                                                         multiple cloudlets.
+																 
+			list.add(vm[0]);
+		list.add(vm[1]);
+		//list.add(vm[2]);
+		return list;
+//this will add VM's to the list.
+
+------------------------------------------------------------------------------------------------------		
+		private static List<Cloudlet> createCloudlet(int userId, int cloudlets){
+		LinkedList<Cloudlet> list = new LinkedList<Cloudlet>();
+		//creates a container for the cloudlets.
+		
+			//cloudlet parameters
+		long length = 4000;//length of the cloudlet
+		long fileSize = 300;
+		long outputSize = 300;
+		int pesNumber = 1;//Processing elements
+		
+			UtilizationModel utilizationModel = new UtilizationModelFull();
+			//uses the resorces to its maximum level.
+			
+			
+		Cloudlet[] cloudlet = new Cloudlet[cloudlets];//It creates the instance of a cloudlet
+		
+			
+			
+			for(int i=0;i<cloudlets;i++){
+			//Random r= new Random();
+			//length +r.nextInt(2000)
+			if(i % 2 == 0 || i < 2)
+				length+=6500;
+			else
+				length-=3200;
+			cloudlet[i] = new Cloudlet(i, length, pesNumber, fileSize, outputSize, utilizationModel, utilizationModel, utilizationModel);
+			// setting the owner of these Cloudlets
+			cloudlet[i].setUserId(userId);
+			list.add(cloudlet[i]);
+		}///This code will basically assign the the length and generate different cloudlet length
+		
+		-------------------------------------------------------------------------------------------------
+		main methods:-
+		
+			int num_user = 3;   // number of users
+			Calendar calendar = Calendar.getInstance();
+			boolean trace_flag = false;  // mean trace events,, to get the log simulation events etc
+			
+			//calender method used to get the time to start the simulation process.
+			
+			
+			Datacenter datacenter0 = createDatacenter("Datacenter_0");//This will create a datacenter, that helps to get resources
+				DatacenterBroker broker = createBroker();
+			int brokerId = broker.getId();//This creates the broker,that acts as the mediator between cloud and datacenter
+			
+			
+				vmlist = createVM(brokerId,2); //creating 2 vms
+			cloudletList = createCloudlet(brokerId,20); // creating 20 cloudlets
+			
+			
+			broker.submitVmList(vmlist);
+			broker.submitCloudletList(cloudletList);
+///This will submit the list of vm's and cloudlets to the broker, so that broker can allocate it according to sjf
+
+
+
+
+		
+		
+		
+		
