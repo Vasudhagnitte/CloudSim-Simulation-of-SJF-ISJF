@@ -28,6 +28,8 @@ In this Project we have considered the following:
 
 *Number of Hosts:1
 
+You can also go through the text file on Explanation of Simulation.java code
+
 For more knowledge and proper understanding of the concept, go through the conferance paper attached with this.
 
 
